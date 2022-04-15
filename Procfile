@@ -1,1 +1,1 @@
-web: gunicorn --chdir receitas receitas.wsgi
+web: gunicorn receitas.wsgi
