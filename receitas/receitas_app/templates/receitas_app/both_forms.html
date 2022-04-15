@@ -1,0 +1,41 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+{% load bootstrap %}
+
+<div class="row">
+    <div class="col-sm-6">
+            <h1>Criar nova receita</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{aform|bootstrap}}
+            
+                <input class="btn btn-primary" type="submit" name="{{aform.prefix}}" value='Criar'>
+            </form>
+    </div>
+    <div class="col-sm-6">
+        <h1>Adicionar ingrediente e quantidade</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{bform|bootstrap}}
+
+            <input class="btn btn-primary" type="submit" name="{{bform.prefix}}" value='Criar'>
+
+        </form>
+
+        <h1>Criar novo ingrediente</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{cform|bootstrap}}
+
+            <input class="btn btn-primary" type="submit" name="{{cform.prefix}}" value='Criar'>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

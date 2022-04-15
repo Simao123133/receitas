@@ -1,0 +1,60 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+
+<div class="d-flex flex-column align-items-center">
+
+<h1>{{ receitas.receita }} 
+
+{% if user.is_authenticated %}
+    {% if user == receitas.autor %}
+
+        <a href="{{ receitas.get_change_url }}" class="btn btn-outline-primary"><p>Edit</p> </a>
+
+    {% endif %}
+{% endif %}
+
+</h1>
+
+{% load static %} 
+<img src="{{receitas.foto.url}}">
+
+<h2> Ingredientes</h2>
+{% for ingrediente in receitas.ingredientes.all %}
+        <li >
+            {{ingrediente}}
+        </li>
+{% endfor %}
+
+<h2> Procedimento </h2>
+
+{{receitas.procedimento}}
+
+<h3> Informação nutricional </h3>
+
+<ul>
+
+<li>
+    Kcal: {{receitas.kcal}}
+</li>
+<li>
+    Proteínas: {{receitas.prot}}
+</li>
+<li>
+    Hidratos de carbono: {{receitas.hidr}}
+</li>
+<li>
+    Gorduras: {{receitas.gor}}
+</li>
+    
+</ul>
+
+<h4> Autor </h4>
+
+{{receitas.autor}} 
+
+</div>
+
+{% endblock %}
+

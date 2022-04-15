@@ -1,0 +1,31 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+{% load static %} 
+
+{% for receita in lista_receitas %}
+
+    {% if receita.tipo.tipo == "Sobremesa" %}
+
+        {% if forloop.counter0|divisibleby:3 %}<div class="card-deck justify-content-center d-sm-flex"> {%  endif %}
+            
+            
+            <div class="card border-primary mb-3" style="width: auto;">
+                <img src="{{receita.foto.url}}" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ receita.receita }}</h5>
+                    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                    <a href="{{ receita.get_absolute_url }}" class="btn btn-primary mt-auto">Ver receita</a>
+                </div>
+            </div>
+            
+
+        {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
+        
+
+    {% endif %}
+
+{% endfor %}
+
+{% endblock %}

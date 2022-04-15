@@ -1,0 +1,23 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+{% load bootstrap %}
+
+<h1>Criar novo ingrediente</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form|bootstrap}}
+    <br>
+
+    <input class="btn btn-primary" type="submit" value='Criar'>
+
+    <br>
+    <br>
+    <br>
+
+    <p><a href={% url 'receitas_app:create_quantidadeingredientes' %} class="btn btn-outline-primary">Voltar</a></p>
+
+</form>
+
+{% endblock %}

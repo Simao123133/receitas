@@ -1,0 +1,25 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+{% if user.is_authenticated %}
+    {% if user == receitas.autor %}
+
+        <h1>Editar receita</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|bootstrap}}
+
+            <p><a href={% url 'receitas_app:create_quantidadeingredientes' %}>Adicionar ingrediente</a></p>
+
+            <input type="submit" value='Editar'>
+        </form>
+
+    {% else %}
+
+    You are not allowed here!
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+<h1 class="text-center"> Lista de ingredientes</h1>
+
+<ul class="list-group">
+    <!-- Iterate over object_list -->
+    {% for ingrediente in lista_ingredientes %}
+    <!-- Display Objects -->
+    <li class="list-group-item"><a href="{{ ingrediente.get_absolute_url }}" class="list-group-item list-group-item-action bg-primary text-white" >{{ ingrediente.ingrediente }}</a> </li>
+    
+    <!-- If object_list is empty  -->
+    {% empty %}
+    <li>Ainda não há ingredientes.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

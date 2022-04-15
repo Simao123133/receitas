@@ -1,0 +1,26 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+{% load bootstrap %}
+
+<h1>Adicionar ingrediente e quantidade</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.ingrediente|bootstrap}}
+    <p><a href={% url 'receitas_app:create_ingredientes' %} class="btn btn-outline-primary">Adicionar ingredientes à base de dados</a></p>
+    {{form.quantidade|bootstrap}}
+    
+    <br>
+
+    <input class="btn btn-primary" type="submit" value='Criar'>
+
+    <br>
+    <br>
+    <br>
+
+    <p><a href={% url 'receitas_app:create_receitas' %} class="btn btn-outline-primary">Voltar</a></p>
+
+</form>
+
+{% endblock %}
