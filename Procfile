@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath receitas.wsgi
+web: gunicorn -chdir receitas receitas.wsgi:application --log-file -
