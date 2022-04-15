@@ -1,1 +1,1 @@
-web: gunicorn receitas.wsgi --log-file=-
+web: gunicorn --chdir receitas receitas.wsgi
