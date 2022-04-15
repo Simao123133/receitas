@@ -1,1 +1,1 @@
-web: gunicorn receitas.wsgi:application --log-file -
+web: gunicorn wsgi:app--log-file -
