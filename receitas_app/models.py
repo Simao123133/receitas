@@ -3,7 +3,6 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User 
-from django_resized import ResizedImageField
 
 # Create your models here.
 
@@ -46,7 +45,7 @@ class Receitas(models.Model):
     autor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     ingredientes = models.ManyToManyField(QuantidadeIngredientes)
     procedimento = models.TextField(max_length=300, default='Descrição')
-    foto = ResizedImageField(size=[300,300],null=True, blank=True, quality=75, upload_to="receitas/static/images")
+    foto  = models.ImageField(null=True, blank=True, upload_to="receitas/static/images")
     tipo = models.ForeignKey(TipoReceita, on_delete=models.CASCADE,null=True)
 
     @property
