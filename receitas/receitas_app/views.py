@@ -7,9 +7,6 @@ from .forms import CreateReceitasForm, CreateQuantidadeIngredientesForm, CreateI
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
-
-
-
 from receitas_app.models import Mensagens, Receitas, Ingredientes, QuantidadeIngredientes
 # Create your views here.
 
