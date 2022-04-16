@@ -3,12 +3,14 @@
 {%block content %}
 
 {% load bootstrap %}
+{% load cloudinary %}
 
 <div class="row">
     <div class="col-sm-6">
             <h1>Criar nova receita</h1>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+
                 {{aform|bootstrap}}
             
                 <input class="btn btn-primary" type="submit" name="{{aform.prefix}}" value='Criar'>

@@ -27,7 +27,7 @@ urlpatterns = [
     path('create_ingredientes/',views.IngredientesCreate.as_view(),name='create_ingredientes'),
     path('create_quantidadeingredientes/',views.QuantidadeIngredientesCreate.as_view(),name='create_quantidadeingredientes'),
     path('ingredientes/<int:pk>/',views.IngredientesDetail.as_view(),name='ingredientes_detail'),
-    path('receitas_list/',views.ReceitasList.as_view(),name='list_receitas'),
+    path('',views.ReceitasList.as_view(),name='list_receitas'),
     path('refeicoes_list/',views.RefeicoesList.as_view(),name='list_refeicoes'),
     path('sobremesas_list/',views.SobremesasList.as_view(),name='list_sobremesas'),
     path('ingredientes_list/',views.IngredientesList.as_view(),name='list_ingredientes'),
@@ -36,6 +36,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('create_mensagens/',views.MensagensCreate.as_view(),name='create_mensagens'),
     path('success_message/',views.MensagemEnviadaView.as_view(),name='message_success'),
-    path('',views.BothForms.as_view(),name='both_forms'),
+    path('both_forms',views.BothForms.as_view(),name='both_forms'),
     
 ]

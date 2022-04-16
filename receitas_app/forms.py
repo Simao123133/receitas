@@ -12,6 +12,10 @@ class CreateReceitasForm(forms.ModelForm):
         model = Receitas
         fields = ['receita', 'ingredientes', 'procedimento', 'tipo', 'foto']
 
+    def __init__(self, *args, **kwargs):
+        super(CreateReceitasForm, self).__init__(*args, **kwargs)
+        self.fields['foto'].required = False
+
     receita = forms.CharField(max_length=100)
     procedimento = forms.CharField(widget = forms.Textarea)
     foto = forms.ImageField()

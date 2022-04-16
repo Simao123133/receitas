@@ -3,6 +3,7 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User 
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -45,7 +46,7 @@ class Receitas(models.Model):
     autor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     ingredientes = models.ManyToManyField(QuantidadeIngredientes)
     procedimento = models.TextField(max_length=300, default='Descrição')
-    foto  = models.ImageField(null=True, blank=True, upload_to="receitas/static/images")
+    foto  = models.ImageField(null=True, blank=True, upload_to="", default='rojoes.jpeg')
     tipo = models.ForeignKey(TipoReceita, on_delete=models.CASCADE,null=True)
 
     @property

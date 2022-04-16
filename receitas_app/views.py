@@ -84,7 +84,7 @@ def _get_form(request, formcls, prefix):
 
     return formcls(data, prefix=prefix)
 
-class BothForms(TemplateView):
+class BothForms(LoginRequiredMixin,TemplateView):
 
     template_name = 'receitas_app/both_forms.html'
 
@@ -99,6 +99,7 @@ class BothForms(TemplateView):
         cform = _get_form(request, CreateIngredientesForm, 'cform_pre')
         
         if aform.is_bound and aform.is_valid():
+            aform.instance.autor = self.request.user
             aform.save()
             return redirect('receitas_app:list_receitas')
 
@@ -114,6 +115,7 @@ class BothForms(TemplateView):
         context.update({'aform': aform, 'bform': bform, 'cform': cform})
 
         return self.render_to_response(context)
+
 
 
 

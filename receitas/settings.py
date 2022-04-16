@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'receitas_app.apps.ReceitasAppConfig',
     'bootstrapform',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
@@ -167,6 +169,7 @@ LOGGING = {
         },
         'console': {
             'level': 'DEBUG',
+
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         }
@@ -181,4 +184,12 @@ LOGGING = {
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = { 
+  'CLOUD_NAME': "hbgrr017g", 
+  'API_KEY': "337963254167252", 
+  'API_SECRET': "iuNIyLCnlYjeTHdJG5Gx3mTnan4" 
+}
 
