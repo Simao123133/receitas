@@ -46,7 +46,7 @@ class Receitas(models.Model):
     autor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     ingredientes = models.ManyToManyField(QuantidadeIngredientes)
     procedimento = models.TextField(max_length=300, default='Descrição')
-    foto  = models.ImageField(null=True, blank=True, upload_to="", default='rojoes.jpeg')
+    foto  = models.ImageField(null=True, blank=True, upload_to="", default='download_pr2ep5.jpg')
     tipo = models.ForeignKey(TipoReceita, on_delete=models.CASCADE,null=True)
 
     @property
