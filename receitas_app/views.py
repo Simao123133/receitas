@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DetailView,ListView, TemplateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.forms import UserCreationForm 
 from django.urls import reverse_lazy 
 from .forms import CreateReceitasForm, CreateQuantidadeIngredientesForm, CreateIngredientesForm
@@ -84,9 +84,12 @@ def _get_form(request, formcls, prefix):
 
     return formcls(data, prefix=prefix)
 
-class BothForms(LoginRequiredMixin,TemplateView):
+class BothForms(PermissionRequiredMixin,TemplateView):
 
     template_name = 'receitas_app/both_forms.html'
+
+    permission_required = 'receitas_app.change_receitas'
+    permission_denied_message = "Não tem permissão para criar receitas, enviar mensagem a pedir"
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
