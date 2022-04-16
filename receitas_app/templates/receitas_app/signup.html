@@ -2,10 +2,12 @@
 
 {%block content %}
 
+{% load bootstrap%}
+
 <h1>Novo utilizador</h1>
 <form method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    {{form|bootstrap}}
     <input type="submit" value="signup">
 </form>
 
