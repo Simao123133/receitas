@@ -10,10 +10,10 @@ from cloudinary.models import CloudinaryField
 class Ingredientes(models.Model):
 
     ingrediente = models.CharField(max_length=100)
-    kcal = models.FloatField()
-    proteinas = models.FloatField()
-    hidratos = models.FloatField()
-    gorduras = models.FloatField()
+    kcal = models.DecimalField(decimal_places=2, max_digits=10)
+    proteinas = models.DecimalField(decimal_places=2, max_digits=10)
+    hidratos = models.DecimalField(decimal_places=2, max_digits=10)
+    gorduras = models.DecimalField(decimal_places=2, max_digits=10)
     unidade = models.CharField(max_length=100, default='g', blank=True)
 
     def __str__(self):
@@ -25,12 +25,12 @@ class Ingredientes(models.Model):
 class QuantidadeIngredientes(models.Model):
 
     ingrediente = models.ForeignKey(Ingredientes, on_delete=models.CASCADE)
-    quantidade = models.FloatField(default=1)
+    quantidade = models.DecimalField(default=1, decimal_places=2, max_digits=10)
     time_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):
 
-        return str(self.quantidade) + str(self.ingrediente)
+        return '%g'%(self.quantidade) + str(self.ingrediente)
 
 class TipoReceita(models.Model):
 
@@ -51,25 +51,30 @@ class Receitas(models.Model):
 
     @property
     def kcal(self):
-        return sum(ingrediente.quantidade*ingrediente.ingrediente.kcal for ingrediente in self.ingredientes.all())
+        
+        return '%g'%(sum(ingrediente.quantidade*ingrediente.ingrediente.kcal for ingrediente in self.ingredientes.all()))
 
     @property
     def prot(self):
-        return sum(ingrediente.quantidade*ingrediente.ingrediente.proteinas for ingrediente in self.ingredientes.all())
+        return '%g'%(sum(ingrediente.quantidade*ingrediente.ingrediente.proteinas for ingrediente in self.ingredientes.all()))
 
     @property
     def hidr(self):
-        return sum(ingrediente.quantidade*ingrediente.ingrediente.hidratos for ingrediente in self.ingredientes.all())
+        return '%g'%(sum(ingrediente.quantidade*ingrediente.ingrediente.hidratos for ingrediente in self.ingredientes.all()))
 
     @property
     def gor(self):
-        return sum(ingrediente.quantidade*ingrediente.ingrediente.gorduras for ingrediente in self.ingredientes.all())
+        return '%g'%(sum(ingrediente.quantidade*ingrediente.ingrediente.gorduras for ingrediente in self.ingredientes.all()))
 
     def get_absolute_url(self):
         return reverse("receitas_app:receitas_detail", kwargs={"pk": self.pk})
 
     def get_change_url(self):
         return reverse("receitas_app:receitas_update", kwargs={"pk": self.pk})
+
+    def __str__(self):
+
+        return str(self.receita)
         
 
 class Mensagens(models.Model):

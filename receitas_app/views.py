@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy 
 from .forms import CreateReceitasForm, CreateQuantidadeIngredientesForm, CreateIngredientesForm, UpdateReceitasForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 from receitas_app.models import Mensagens, Receitas, Ingredientes, QuantidadeIngredientes
 # Create your views here.
@@ -60,6 +60,7 @@ class ReceitasUpdateView(LoginRequiredMixin,UpdateView):
     model = Receitas
     form_class = UpdateReceitasForm
     template_name_suffix = "_update_form"
+    
 
 class IngredientesList(ListView):
     model = Ingredientes
@@ -118,6 +119,10 @@ class BothForms(PermissionRequiredMixin,TemplateView):
         context.update({'aform': aform, 'bform': bform, 'cform': cform})
 
         return self.render_to_response(context)
+
+
+
+
 
 
 
