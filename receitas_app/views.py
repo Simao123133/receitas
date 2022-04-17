@@ -3,7 +3,7 @@ from django.views.generic import CreateView,DetailView,ListView, TemplateView, U
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.forms import UserCreationForm 
 from django.urls import reverse_lazy 
-from .forms import CreateReceitasForm, CreateQuantidadeIngredientesForm, CreateIngredientesForm
+from .forms import CreateReceitasForm, CreateQuantidadeIngredientesForm, CreateIngredientesForm, UpdateReceitasForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
@@ -58,7 +58,7 @@ class MensagensCreate(CreateView): #receitas_form.html
 
 class ReceitasUpdateView(LoginRequiredMixin,UpdateView):
     model = Receitas
-    form_class = CreateReceitasForm
+    form_class = UpdateReceitasForm
     template_name_suffix = "_update_form"
 
 class IngredientesList(ListView):

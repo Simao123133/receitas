@@ -25,6 +25,25 @@ class CreateReceitasForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple
     )
 
+class UpdateReceitasForm(forms.ModelForm):
+    
+    class Meta:
+        model = Receitas
+        fields = ['receita', 'ingredientes', 'procedimento', 'tipo', 'foto']
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateReceitasForm, self).__init__(*args, **kwargs)
+        self.fields['foto'].required = False
+
+    receita = forms.CharField(max_length=100)
+    procedimento = forms.CharField(widget = forms.Textarea)
+    foto = forms.ImageField()
+
+    ingredientes = forms.ModelMultipleChoiceField(
+        queryset=QuantidadeIngredientes.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+
 class CreateQuantidadeIngredientesForm(forms.ModelForm):
 
     class Meta:
