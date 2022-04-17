@@ -2,6 +2,8 @@
 
 {%block content %}
 
+{% load bootstrap %}
+
 {% if user.is_authenticated %}
     {% if user == receitas.autor %}
 
@@ -9,8 +11,6 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form|bootstrap}}
-
-            <p><a href={% url 'receitas_app:create_quantidadeingredientes' %}>Adicionar ingrediente</a></p>
 
             <input type="submit" value='Editar'>
         </form>
