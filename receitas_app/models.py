@@ -9,12 +9,12 @@ from cloudinary.models import CloudinaryField
 
 class Ingredientes(models.Model):
 
-    ingrediente = models.CharField(max_length=30)
+    ingrediente = models.CharField(max_length=100)
     kcal = models.FloatField()
     proteinas = models.FloatField()
     hidratos = models.FloatField()
     gorduras = models.FloatField()
-    unidade = models.CharField(max_length=30, default='g', blank=True)
+    unidade = models.CharField(max_length=100, default='g', blank=True)
 
     def __str__(self):
         return self.unidade + " " + self.ingrediente
@@ -25,7 +25,7 @@ class Ingredientes(models.Model):
 class QuantidadeIngredientes(models.Model):
 
     ingrediente = models.ForeignKey(Ingredientes, on_delete=models.CASCADE)
-    quantidade = models.IntegerField(default=1)
+    quantidade = models.FloatField(default=1)
     time_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):
