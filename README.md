@@ -1,6 +1,6 @@
 # Recipes Website
 
-This repo holds the code for the recipes website.\
+This repo holds the code for the recipes website.
 
 # Description
 
